@@ -78,7 +78,8 @@ const LoginForm: React.FC<LoginFormProps> = ({ onLogin, companyName = "Sun Logis
   return (
     <div className="w-full animate-fade-in">
       <form onSubmit={handleSubmit} className="p-8">
-        <h2 className="text-2xl font-bold text-center mb-6 text-gray-800">Welcome Back to {companyName}</h2>
+        <h2 className="text-2xl font-bold text-center mb-2 text-gray-800">Login to {companyName}</h2>
+        <p className="text-center mb-6 text-gray-600">Enter your credentials to access your account</p>
         
         {error && (
           <Alert variant="destructive" className="mb-4">
