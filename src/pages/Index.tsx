@@ -17,7 +17,7 @@ const Index = () => {
           <p className="text-gray-600">Enter your credentials to access your account</p>
         </div>
         <Card className="shadow-card overflow-hidden">
-          <LoginForm onLogin={handleLogin} />
+          <LoginForm onLogin={handleLogin} companyName="Sun Logistics" />
         </Card>
       </div>
     </div>

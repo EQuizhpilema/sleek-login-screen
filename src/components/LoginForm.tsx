@@ -11,9 +11,10 @@ import { Link } from 'react-router-dom';
 
 interface LoginFormProps {
   onLogin?: (email: string, password: string) => void;
+  companyName?: string;
 }
 
-const LoginForm: React.FC<LoginFormProps> = ({ onLogin }) => {
+const LoginForm: React.FC<LoginFormProps> = ({ onLogin, companyName = "Sun Logistics" }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
@@ -79,6 +80,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ onLogin }) => {
     <div className="w-full animate-fade-in">
       <form onSubmit={handleSubmit} className="p-8">
         <h2 className="text-2xl font-bold text-center mb-6 text-gray-800">MiniMax</h2>
+        <h3 className="text-lg text-center mb-6 text-gray-600">Welcome back to {companyName}</h3>
         
         {error && (
           <Alert variant="destructive" className="mb-4">
