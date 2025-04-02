@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -91,7 +90,7 @@ const ResetPassword = () => {
             </p>
             <Button 
               asChild
-              className="w-full bg-purple hover:bg-purple-dark transition-colors"
+              className="w-full bg-blue hover:bg-blue-dark transition-colors rounded-full" // Updated to rounded-full
             >
               <Link to="/forgot-password">Request New Reset Link</Link>
             </Button>
@@ -179,7 +178,7 @@ const ResetPassword = () => {
               {/* Reset Button */}
               <Button 
                 type="submit" 
-                className="w-full bg-purple hover:bg-purple-dark transition-colors"
+                className="w-full bg-blue hover:bg-blue-dark transition-colors rounded-full" // Updated to rounded-full
                 disabled={isSubmitting}
               >
                 {isSubmitting ? "Resetting..." : "Reset Password"}

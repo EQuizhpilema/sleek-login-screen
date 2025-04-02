@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -78,7 +77,7 @@ const ForgotPassword = () => {
             </p>
             <Button 
               asChild
-              className="w-full bg-blue hover:bg-blue-dark transition-colors"
+              className="w-full bg-blue hover:bg-blue-dark transition-colors rounded-full"
             >
               <Link to="/">Return to Login</Link>
             </Button>
@@ -95,7 +94,6 @@ const ForgotPassword = () => {
               )}
 
               <div className="space-y-4">
-                {/* Email Field */}
                 <div className="space-y-2">
                   <Label htmlFor="email" className="text-sm font-medium text-gray-700">
                     Email
@@ -116,16 +114,14 @@ const ForgotPassword = () => {
                   </div>
                 </div>
 
-                {/* Submit Button */}
                 <Button 
                   type="submit" 
-                  className="w-full bg-blue hover:bg-blue-dark transition-colors"
+                  className="w-full bg-blue hover:bg-blue-dark transition-colors rounded-full"
                   disabled={isSubmitting}
                 >
                   {isSubmitting ? "Sending..." : "Send Reset Link"}
                 </Button>
 
-                {/* Back to Login */}
                 <div className="text-center mt-4">
                   <p className="text-sm text-gray-600">
                     Remember your password?{" "}

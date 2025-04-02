@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -30,10 +29,8 @@ const LoginForm: React.FC<LoginFormProps> = ({ onLogin }) => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    // Reset error state
     setError(null);
     
-    // Basic validation
     if (!email.trim() || !password.trim()) {
       setError('Please enter both email and password');
       return;
@@ -52,18 +49,14 @@ const LoginForm: React.FC<LoginFormProps> = ({ onLogin }) => {
     setIsSubmitting(true);
 
     try {
-      // Simulate API call to validate credentials
       await new Promise(resolve => setTimeout(resolve, 1000));
       
-      // For demo purposes, let's check against some hardcoded credentials
-      // In a real app, this would be an API call
       if (email === 'user@example.com' && password === 'password123') {
         toast({
           title: "Login Successful",
           description: "Welcome back!",
         });
         
-        // Call the onLogin callback if provided
         if (onLogin) {
           onLogin(email, password);
         }
@@ -93,7 +86,6 @@ const LoginForm: React.FC<LoginFormProps> = ({ onLogin }) => {
         )}
 
         <div className="space-y-4">
-          {/* Email Field */}
           <div className="space-y-2">
             <Label htmlFor="email" className="text-sm font-medium text-gray-700">
               Email
@@ -114,7 +106,6 @@ const LoginForm: React.FC<LoginFormProps> = ({ onLogin }) => {
             </div>
           </div>
 
-          {/* Password Field */}
           <div className="space-y-2">
             <div className="flex justify-between items-center">
               <Label htmlFor="password" className="text-sm font-medium text-gray-700">
@@ -150,7 +141,6 @@ const LoginForm: React.FC<LoginFormProps> = ({ onLogin }) => {
             </div>
           </div>
 
-          {/* Remember Me Checkbox */}
           <div className="flex items-center space-x-2">
             <Checkbox 
               id="remember" 
@@ -166,10 +156,9 @@ const LoginForm: React.FC<LoginFormProps> = ({ onLogin }) => {
             </label>
           </div>
 
-          {/* Login Button */}
           <Button 
             type="submit" 
-            className="w-full bg-blue hover:bg-blue-dark transition-colors"
+            className="w-full bg-blue hover:bg-blue-dark transition-colors rounded-full"
             disabled={isSubmitting}
           >
             {isSubmitting ? "Signing in..." : "Sign In"}
