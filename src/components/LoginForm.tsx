@@ -7,6 +7,7 @@ import { Label } from '@/components/ui/label';
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import { Eye, EyeOff, Lock, User } from 'lucide-react';
 import { useToast } from '@/components/ui/use-toast';
+import { Link } from 'react-router-dom';
 
 interface LoginFormProps {
   onLogin?: (email: string, password: string) => void;
@@ -101,9 +102,12 @@ const LoginForm: React.FC<LoginFormProps> = ({ onLogin }) => {
               <Label htmlFor="password" className="text-sm font-medium text-gray-700">
                 Password
               </Label>
-              <a href="#" className="text-xs text-purple hover:text-purple-dark transition-colors">
+              <Link 
+                to="/forgot-password" 
+                className="text-xs text-purple hover:text-purple-dark transition-colors"
+              >
                 Forgot Password?
-              </a>
+              </Link>
             </div>
             <div className="relative">
               <div className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400">
