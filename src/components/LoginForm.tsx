@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -77,7 +78,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ onLogin }) => {
   return (
     <div className="w-full animate-fade-in">
       <form onSubmit={handleSubmit} className="p-8">
-        <h2 className="text-2xl font-bold text-center mb-6 text-gray-800">Welcome Back</h2>
+        <h2 className="text-2xl font-bold text-center mb-6 text-gray-800">MiniMax</h2>
         
         {error && (
           <Alert variant="destructive" className="mb-4">
