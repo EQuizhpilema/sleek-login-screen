@@ -1,6 +1,7 @@
 
 import React from 'react';
 import LoginForm from '@/components/LoginForm';
+import { Card } from '@/components/ui/card';
 
 const Index = () => {
   const handleLogin = (email: string, password: string) => {
@@ -15,7 +16,9 @@ const Index = () => {
           <h1 className="text-4xl font-bold text-blue mb-2">Login</h1>
           <p className="text-gray-600">Enter your credentials to access your account</p>
         </div>
-        <LoginForm onLogin={handleLogin} />
+        <Card className="shadow-card overflow-hidden">
+          <LoginForm onLogin={handleLogin} />
+        </Card>
       </div>
     </div>
   );

@@ -75,8 +75,8 @@ const LoginForm: React.FC<LoginFormProps> = ({ onLogin }) => {
   };
 
   return (
-    <div className="w-full max-w-md mx-auto animate-fade-in">
-      <form onSubmit={handleSubmit} className="bg-white rounded-lg shadow-card p-8">
+    <div className="w-full animate-fade-in">
+      <form onSubmit={handleSubmit} className="p-8">
         <h2 className="text-2xl font-bold text-center mb-6 text-gray-800">Welcome Back</h2>
         
         {error && (
