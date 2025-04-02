@@ -67,6 +67,11 @@ export default {
 					light: '#b3a5f9',
 					DEFAULT: '#9b87f5',
 					dark: '#7e69ab'
+				},
+				blue: {
+					light: '#33C3F0',
+					DEFAULT: '#1EAEDB',
+					dark: '#0FA0CE'
 				}
 			},
 			borderRadius: {
@@ -102,7 +107,7 @@ export default {
 				'fade-in': 'fade-in 0.5s ease-out'
 			},
 			boxShadow: {
-				'input': '0 2px 6px rgba(155, 135, 245, 0.15)',
+				'input': '0 2px 6px rgba(30, 174, 219, 0.15)',
 				'card': '0 10px 30px rgba(0, 0, 0, 0.08)'
 			}
 		}

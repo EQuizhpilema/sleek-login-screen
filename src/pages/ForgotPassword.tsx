@@ -60,7 +60,7 @@ const ForgotPassword = () => {
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-100 to-gray-200 p-4">
       <div className="w-full max-w-md">
         <div className="text-center mb-8">
-          <h1 className="text-4xl font-bold text-purple mb-2">Forgot Password</h1>
+          <h1 className="text-4xl font-bold text-blue mb-2">Forgot Password</h1>
           <p className="text-gray-600">Enter your email to receive a password reset link</p>
         </div>
 
@@ -78,7 +78,7 @@ const ForgotPassword = () => {
             </p>
             <Button 
               asChild
-              className="w-full bg-purple hover:bg-purple-dark transition-colors"
+              className="w-full bg-blue hover:bg-blue-dark transition-colors"
             >
               <Link to="/">Return to Login</Link>
             </Button>
@@ -109,7 +109,7 @@ const ForgotPassword = () => {
                       type="email"
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
-                      className="pl-10 border-gray-200 focus:border-purple-400 focus:ring-purple-400 shadow-input"
+                      className="pl-10 border-gray-200 focus:border-blue-400 focus:ring-blue-400 shadow-input"
                       placeholder="your@email.com"
                       disabled={isSubmitting}
                     />
@@ -119,7 +119,7 @@ const ForgotPassword = () => {
                 {/* Submit Button */}
                 <Button 
                   type="submit" 
-                  className="w-full bg-purple hover:bg-purple-dark transition-colors"
+                  className="w-full bg-blue hover:bg-blue-dark transition-colors"
                   disabled={isSubmitting}
                 >
                   {isSubmitting ? "Sending..." : "Send Reset Link"}
@@ -129,7 +129,7 @@ const ForgotPassword = () => {
                 <div className="text-center mt-4">
                   <p className="text-sm text-gray-600">
                     Remember your password?{" "}
-                    <Link to="/" className="text-purple hover:text-purple-dark transition-colors font-medium">
+                    <Link to="/" className="text-blue hover:text-blue-dark transition-colors font-medium">
                       Back to login
                     </Link>
                   </p>

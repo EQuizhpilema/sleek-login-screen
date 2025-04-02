@@ -19,6 +19,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ onLogin }) => {
   const [showPassword, setShowPassword] = useState(false);
   const [rememberMe, setRememberMe] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const { toast } = useToast();
 
   const validateEmail = (email: string) => {
@@ -26,8 +27,11 @@ const LoginForm: React.FC<LoginFormProps> = ({ onLogin }) => {
     return re.test(email);
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    
+    // Reset error state
+    setError(null);
     
     // Basic validation
     if (!email.trim() || !password.trim()) {
@@ -45,18 +49,31 @@ const LoginForm: React.FC<LoginFormProps> = ({ onLogin }) => {
       return;
     }
 
-    // Clear any previous errors
-    setError(null);
-    
-    // Show success toast
-    toast({
-      title: "Login Successful",
-      description: "Welcome back!",
-    });
-    
-    // Call the onLogin callback if provided
-    if (onLogin) {
-      onLogin(email, password);
+    setIsSubmitting(true);
+
+    try {
+      // Simulate API call to validate credentials
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      
+      // For demo purposes, let's check against some hardcoded credentials
+      // In a real app, this would be an API call
+      if (email === 'user@example.com' && password === 'password123') {
+        toast({
+          title: "Login Successful",
+          description: "Welcome back!",
+        });
+        
+        // Call the onLogin callback if provided
+        if (onLogin) {
+          onLogin(email, password);
+        }
+      } else {
+        setError('Invalid email or password. Please try again.');
+      }
+    } catch (err) {
+      setError('An error occurred. Please try again later.');
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -90,8 +107,9 @@ const LoginForm: React.FC<LoginFormProps> = ({ onLogin }) => {
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="pl-10 border-gray-200 focus:border-purple-400 focus:ring-purple-400 shadow-input"
+                className="pl-10 border-gray-200 focus:border-blue-400 focus:ring-blue-400 shadow-input"
                 placeholder="your@email.com"
+                disabled={isSubmitting}
               />
             </div>
           </div>
@@ -104,7 +122,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ onLogin }) => {
               </Label>
               <Link 
                 to="/forgot-password" 
-                className="text-xs text-purple hover:text-purple-dark transition-colors"
+                className="text-xs text-blue hover:text-blue-dark transition-colors"
               >
                 Forgot Password?
               </Link>
@@ -118,8 +136,9 @@ const LoginForm: React.FC<LoginFormProps> = ({ onLogin }) => {
                 type={showPassword ? 'text' : 'password'}
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="pl-10 border-gray-200 focus:border-purple-400 focus:ring-purple-400 shadow-input"
+                className="pl-10 border-gray-200 focus:border-blue-400 focus:ring-blue-400 shadow-input"
                 placeholder="••••••••"
+                disabled={isSubmitting}
               />
               <button
                 type="button"
@@ -137,7 +156,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ onLogin }) => {
               id="remember" 
               checked={rememberMe}
               onCheckedChange={(checked) => setRememberMe(checked === true)}
-              className="data-[state=checked]:bg-purple data-[state=checked]:border-purple"
+              className="data-[state=checked]:bg-blue data-[state=checked]:border-blue"
             />
             <label
               htmlFor="remember"
@@ -150,20 +169,11 @@ const LoginForm: React.FC<LoginFormProps> = ({ onLogin }) => {
           {/* Login Button */}
           <Button 
             type="submit" 
-            className="w-full bg-purple hover:bg-purple-dark transition-colors"
+            className="w-full bg-blue hover:bg-blue-dark transition-colors"
+            disabled={isSubmitting}
           >
-            Sign In
+            {isSubmitting ? "Signing in..." : "Sign In"}
           </Button>
-
-          {/* Sign Up Link */}
-          <div className="text-center mt-4">
-            <p className="text-sm text-gray-600">
-              Don't have an account?{" "}
-              <a href="#" className="text-purple hover:text-purple-dark transition-colors font-medium">
-                Sign up
-              </a>
-            </p>
-          </div>
         </div>
       </form>
     </div>
