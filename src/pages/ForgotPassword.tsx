@@ -3,12 +3,6 @@ import React, { useState } from 'react';
 import { useToast } from '@/components/ui/use-toast';
 import { User } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import {
-  MDBInput,
-  MDBBtn,
-  MDBCard,
-  MDBCardBody
-} from 'mdb-react-ui-kit';
 
 const ForgotPassword = () => {
   const [username, setUsername] = useState('');
@@ -53,9 +47,9 @@ const ForgotPassword = () => {
       <div className="container">
         <div className="row justify-content-center">
           <div className="col-12 col-md-6 col-lg-5 col-xl-4">
-            <MDBCard className="shadow-card">
+            <div className="card shadow-card">
               {requestSent ? (
-                <MDBCardBody className="text-center">
+                <div className="card-body text-center">
                   <div className="d-flex justify-content-center mb-4">
                     <div className="bg-success bg-opacity-10 p-3 rounded-circle">
                       <User className="text-success" size={32} />
@@ -66,18 +60,12 @@ const ForgotPassword = () => {
                     If an account exists with the username <strong>{username}</strong>, you'll receive a 
                     password reset link shortly. Please check your registered email and spam folder.
                   </p>
-                  <MDBBtn 
-                    color="primary" 
-                    rounded 
-                    tag={Link} 
-                    to="/" 
-                    className="w-100"
-                  >
+                  <Link to="/" className="btn btn-primary w-100 rounded-pill">
                     Return to Login
-                  </MDBBtn>
-                </MDBCardBody>
+                  </Link>
+                </div>
               ) : (
-                <MDBCardBody className="animate__animated animate__fadeIn">
+                <div className="card-body animate__animated animate__fadeIn">
                   <form onSubmit={handleSubmit}>
                     <h2 className="card-title text-center mb-2">Forgot Password</h2>
                     <p className="text-center mb-4 text-muted">Enter your username to receive a password reset link</p>
@@ -88,32 +76,33 @@ const ForgotPassword = () => {
                       </div>
                     )}
 
-                    <div className="mb-4">
-                      <MDBInput
-                        label='Username'
-                        id='username'
-                        type='text'
-                        value={username}
-                        onChange={(e) => setUsername(e.target.value)}
-                        required
-                        disabled={isSubmitting}
-                        contrast
-                      >
-                        <div className="input-prefix">
+                    <div className="mb-3">
+                      <label htmlFor="username" className="form-label">
+                        Username
+                      </label>
+                      <div className="input-group">
+                        <span className="input-group-text">
                           <User size={18} />
-                        </div>
-                      </MDBInput>
+                        </span>
+                        <input
+                          id="username"
+                          type="text"
+                          value={username}
+                          onChange={(e) => setUsername(e.target.value)}
+                          className="form-control"
+                          placeholder="username"
+                          disabled={isSubmitting}
+                        />
+                      </div>
                     </div>
 
-                    <MDBBtn 
-                      type='submit' 
-                      className="w-100 mb-3"
-                      color="primary"
-                      rounded
+                    <button 
+                      type="submit" 
+                      className="btn btn-primary w-100 rounded-pill mb-3"
                       disabled={isSubmitting}
                     >
                       {isSubmitting ? "Sending..." : "Send Reset Link"}
-                    </MDBBtn>
+                    </button>
 
                     <div className="text-center">
                       <p className="small text-muted">
@@ -124,9 +113,9 @@ const ForgotPassword = () => {
                       </p>
                     </div>
                   </form>
-                </MDBCardBody>
+                </div>
               )}
-            </MDBCard>
+            </div>
           </div>
         </div>
       </div>

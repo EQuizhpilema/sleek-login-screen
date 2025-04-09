@@ -3,13 +3,6 @@ import React, { useState } from 'react';
 import { useToast } from '@/components/ui/use-toast';
 import { Eye, EyeOff, Lock } from 'lucide-react';
 import { Link, useNavigate, useSearchParams } from 'react-router-dom';
-import {
-  MDBInput,
-  MDBBtn,
-  MDBCard,
-  MDBCardBody,
-  MDBInputGroup
-} from 'mdb-react-ui-kit';
 
 const ResetPassword = () => {
   const [password, setPassword] = useState('');
@@ -89,23 +82,17 @@ const ResetPassword = () => {
         <div className="container">
           <div className="row justify-content-center">
             <div className="col-12 col-md-6 col-lg-5 col-xl-4">
-              <MDBCard className="shadow-card">
-                <MDBCardBody className="text-center">
+              <div className="card shadow-card">
+                <div className="card-body text-center">
                   <h2 className="card-title text-center mb-3">Invalid Reset Link</h2>
                   <p className="text-muted mb-4">
                     This password reset link is invalid or has expired. Please request a new password reset link.
                   </p>
-                  <MDBBtn 
-                    color="primary" 
-                    rounded 
-                    tag={Link} 
-                    to="/forgot-password" 
-                    className="w-100"
-                  >
+                  <Link to="/forgot-password" className="btn btn-primary w-100 rounded-pill">
                     Request New Reset Link
-                  </MDBBtn>
-                </MDBCardBody>
-              </MDBCard>
+                  </Link>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -123,8 +110,8 @@ const ResetPassword = () => {
               <p className="text-muted">Create a new password for your account</p>
             </div>
             
-            <MDBCard className="shadow-card">
-              <MDBCardBody className="animate__animated animate__fadeIn">
+            <div className="card shadow-card">
+              <div className="card-body animate__animated animate__fadeIn">
                 <form onSubmit={handleSubmit}>
                   <h2 className="card-title text-center mb-3">Create New Password</h2>
                   
@@ -134,69 +121,67 @@ const ResetPassword = () => {
                     </div>
                   )}
 
-                  <div className="mb-4">
-                    <MDBInputGroup>
-                      <div className="input-prefix">
+                  <div className="mb-3">
+                    <label htmlFor="password" className="form-label">
+                      New Password
+                    </label>
+                    <div className="input-group">
+                      <span className="input-group-text">
                         <Lock size={18} />
-                      </div>
-                      <MDBInput
-                        label="New Password"
+                      </span>
+                      <input
                         id="password"
                         type={showPassword ? 'text' : 'password'}
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
+                        className="form-control"
+                        placeholder="••••••••"
                         disabled={isSubmitting}
-                        required
-                        contrast
                       />
                       <button
                         type="button"
                         onClick={togglePasswordVisibility}
                         className="btn btn-outline-secondary"
-                        tabIndex={-1}
-                        style={{ zIndex: 0 }}
                       >
                         {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
                       </button>
-                    </MDBInputGroup>
+                    </div>
                   </div>
 
-                  <div className="mb-4">
-                    <MDBInputGroup>
-                      <div className="input-prefix">
+                  <div className="mb-3">
+                    <label htmlFor="confirmPassword" className="form-label">
+                      Confirm Password
+                    </label>
+                    <div className="input-group">
+                      <span className="input-group-text">
                         <Lock size={18} />
-                      </div>
-                      <MDBInput
-                        label="Confirm Password"
+                      </span>
+                      <input
                         id="confirmPassword"
                         type={showConfirmPassword ? 'text' : 'password'}
                         value={confirmPassword}
                         onChange={(e) => setConfirmPassword(e.target.value)}
+                        className="form-control"
+                        placeholder="••••••••"
                         disabled={isSubmitting}
-                        required
-                        contrast
                       />
                       <button
                         type="button"
                         onClick={toggleConfirmPasswordVisibility}
                         className="btn btn-outline-secondary"
-                        tabIndex={-1}
-                        style={{ zIndex: 0 }}
                       >
                         {showConfirmPassword ? <EyeOff size={18} /> : <Eye size={18} />}
                       </button>
-                    </MDBInputGroup>
+                    </div>
                   </div>
 
-                  <MDBBtn 
+                  <button 
                     type="submit" 
-                    className="w-100 mb-3"
-                    color="primary"
-                    rounded
+                    className="btn btn-primary w-100 rounded-pill mb-3"
                     disabled={isSubmitting}
                   >
                     {isSubmitting ? "Resetting..." : "Reset Password"}
-                  </MDBBtn>
+                  </button>
 
                   <div className="text-center">
                     <p className="small text-muted">
@@ -207,8 +192,8 @@ const ResetPassword = () => {
                     </p>
                   </div>
                 </form>
-              </MDBCardBody>
-            </MDBCard>
+              </div>
+            </div>
           </div>
         </div>
       </div>
