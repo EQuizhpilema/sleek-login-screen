@@ -1,9 +1,9 @@
 
 @import 'bootstrap/dist/css/bootstrap.min.css';
 
-/* Additional custom styles */
+/* Additional custom styles for MDB look */
 body {
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
 /* Add smooth transitions */
@@ -23,25 +23,93 @@ input, textarea, select {
   text-align: left;
 }
 
-/* Button styling */
+/* MDB style button styling */
 .btn-primary {
-  background-color: #0d6efd;
-  border-color: #0d6efd;
+  background-color: #1266f1;
+  border-color: #1266f1;
+  box-shadow: 0 4px 9px -4px #3b71ca;
 }
 
 .btn-primary:hover {
-  background-color: #0b5ed7;
-  border-color: #0a58ca;
+  background-color: #0c56d0;
+  border-color: #0c56d0;
+  box-shadow: 0 8px 9px -4px rgba(59, 113, 202, 0.3), 0 4px 18px 0 rgba(59, 113, 202, 0.2);
+}
+
+.btn-primary:focus {
+  background-color: #0c56d0;
+  border-color: #0c56d0;
+  box-shadow: 0 8px 9px -4px rgba(59, 113, 202, 0.3), 0 4px 18px 0 rgba(59, 113, 202, 0.2);
+}
+
+.btn-lg {
+  padding: 0.75rem 1.6875rem;
+  font-size: 1rem;
 }
 
 /* Form styling */
 .form-control:focus, .btn:focus {
-  box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
-  border-color: #86b7fe;
+  box-shadow: 0 0 0 0.25rem rgba(18, 102, 241, 0.25);
+  border-color: #1266f1;
 }
 
-.shadow-card {
-  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+.form-outline .form-control {
+  border: 1px solid #bdbdbd;
+  border-radius: 0.25rem;
+}
+
+.form-outline .form-control:focus {
+  box-shadow: inset 0 0 0 1px #1266f1;
+  border-color: #1266f1;
+}
+
+.form-outline .form-control-lg {
+  padding: 0.75rem 0.75rem;
+}
+
+.input-group-text {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.form-check-input:checked {
+  background-color: #1266f1;
+  border-color: #1266f1;
+}
+
+/* Card styling */
+.card {
+  border-radius: 0.5rem;
+  box-shadow: 0 2px 15px -3px rgba(0, 0, 0, 0.07), 0 10px 20px -2px rgba(0, 0, 0, 0.04);
+}
+
+/* Ripple effect */
+.ripple-surface {
+  position: relative;
+  overflow: hidden;
+}
+
+.ripple-surface::after {
+  content: "";
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  background-image: radial-gradient(circle, #fff 10%, transparent 10.01%);
+  background-repeat: no-repeat;
+  background-position: 50%;
+  transform: scale(10, 10);
+  opacity: 0;
+  transition: transform 0.4s, opacity 0.8s;
+}
+
+.ripple-surface:active::after {
+  transform: scale(0, 0);
+  opacity: 0.3;
+  transition: 0s;
 }
 
 /* Animation classes */
