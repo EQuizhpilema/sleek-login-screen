@@ -70,7 +70,7 @@ const LoginForm = ({ onLogin, companyName = "Sun Logistics" }) => {
 
         <div className="form-outline mb-4">
           <div className="input-group">
-            <span className="input-group-text bg-primary text-white">
+            <span className="input-group-text">
               <User size={18} />
             </span>
             <input
@@ -99,7 +99,7 @@ const LoginForm = ({ onLogin, companyName = "Sun Logistics" }) => {
             </Link>
           </div>
           <div className="input-group">
-            <span className="input-group-text bg-primary text-white">
+            <span className="input-group-text">
               <Lock size={18} />
             </span>
             <input
