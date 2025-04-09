@@ -1,13 +1,13 @@
-
 import React, { useState } from 'react';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Checkbox } from '@/components/ui/checkbox';
-import { Label } from '@/components/ui/label';
-import { Alert, AlertDescription } from '@/components/ui/alert';
 import { Eye, EyeOff, Lock, User } from 'lucide-react';
 import { useToast } from '@/components/ui/use-toast';
 import { Link } from 'react-router-dom';
+import {
+  MDBInput,
+  MDBCheckbox,
+  MDBBtn,
+  MDBInputGroup
+} from 'mdb-react-ui-kit';
 
 interface LoginFormProps {
   onLogin?: (username: string, password: string) => void;
@@ -78,28 +78,25 @@ const LoginForm: React.FC<LoginFormProps> = ({ onLogin, companyName = "Sun Logis
           </div>
         )}
 
-        <div className="mb-3">
-          <label htmlFor="username" className="form-label">
-            Username
-          </label>
-          <div className="input-group">
-            <span className="input-group-text">
+        <div className="mb-4">
+          <MDBInput
+            label='Username'
+            id='username'
+            type='text'
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            disabled={isSubmitting}
+            required
+            contrast
+          >
+            <div className="input-prefix">
               <User size={18} />
-            </span>
-            <input
-              id="username"
-              type="text"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
-              className="form-control"
-              placeholder="username"
-              disabled={isSubmitting}
-            />
-          </div>
+            </div>
+          </MDBInput>
         </div>
 
-        <div className="mb-3">
-          <div className="d-flex justify-content-between align-items-center">
+        <div className="mb-4">
+          <div className="d-flex justify-content-between align-items-center mb-1">
             <label htmlFor="password" className="form-label mb-0">
               Password
             </label>
@@ -110,52 +107,51 @@ const LoginForm: React.FC<LoginFormProps> = ({ onLogin, companyName = "Sun Logis
               Forgot Password?
             </Link>
           </div>
-          <div className="input-group">
-            <span className="input-group-text">
+          <MDBInputGroup>
+            <div className="input-prefix">
               <Lock size={18} />
-            </span>
-            <input
-              id="password"
+            </div>
+            <MDBInput
+              id='password'
               type={showPassword ? 'text' : 'password'}
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="form-control"
-              placeholder="••••••••"
               disabled={isSubmitting}
+              required
+              label='Password'
+              contrast
             />
             <button
               type="button"
               onClick={togglePasswordVisibility}
               className="btn btn-outline-secondary"
+              tabIndex={-1}
+              style={{ zIndex: 0 }}
             >
               {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
             </button>
-          </div>
+          </MDBInputGroup>
         </div>
 
-        <div className="mb-3 form-check">
-          <input 
-            type="checkbox" 
-            className="form-check-input" 
-            id="remember" 
+        <div className="mb-4">
+          <MDBCheckbox
+            name='remember'
+            id='remember'
+            label='Remember me'
             checked={rememberMe}
             onChange={(e) => setRememberMe(e.target.checked)}
           />
-          <label
-            className="form-check-label"
-            htmlFor="remember"
-          >
-            Remember me
-          </label>
         </div>
 
-        <button 
-          type="submit" 
-          className="btn btn-primary w-100 rounded-pill"
+        <MDBBtn 
+          type='submit' 
+          className="w-100 mb-3"
+          color='primary'
+          rounded
           disabled={isSubmitting}
         >
           {isSubmitting ? "Signing in..." : "Sign In"}
-        </button>
+        </MDBBtn>
       </form>
     </div>
   );

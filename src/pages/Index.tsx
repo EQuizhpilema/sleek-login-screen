@@ -1,6 +1,7 @@
 
 import React from 'react';
 import LoginForm from '@/components/LoginForm';
+import { MDBCard } from 'mdb-react-ui-kit';
 
 const Index = () => {
   const handleLogin = (username: string, password: string) => {
@@ -13,9 +14,9 @@ const Index = () => {
       <div className="container">
         <div className="row justify-content-center">
           <div className="col-12 col-md-6 col-lg-5 col-xl-4">
-            <div className="card shadow-card">
+            <MDBCard className="shadow-card">
               <LoginForm onLogin={handleLogin} companyName="Sun Logistics" />
-            </div>
+            </MDBCard>
           </div>
         </div>
       </div>
