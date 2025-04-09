@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -76,96 +77,95 @@ const LoginForm: React.FC<LoginFormProps> = ({ onLogin, companyName = "Sun Logis
   };
 
   return (
-    <div className="w-full animate-fade-in">
-      <form onSubmit={handleSubmit} className="p-8">
-        <h2 className="text-2xl font-bold text-center mb-2 text-gray-800">Login to {companyName}</h2>
-        <p className="text-center mb-6 text-gray-600">Enter your credentials to access your account</p>
+    <div className="card-body animate__animated animate__fadeIn">
+      <form onSubmit={handleSubmit}>
+        <h2 className="card-title text-center mb-2">{`Login to ${companyName}`}</h2>
+        <p className="text-center mb-4 text-muted">Enter your credentials to access your account</p>
         
         {error && (
-          <Alert variant="destructive" className="mb-4">
-            <AlertDescription>{error}</AlertDescription>
-          </Alert>
+          <div className="alert alert-danger mb-4" role="alert">
+            {error}
+          </div>
         )}
 
-        <div className="space-y-4">
-          <div className="space-y-2">
-            <Label htmlFor="email" className="text-sm font-medium text-gray-700">
-              Email
-            </Label>
-            <div className="relative">
-              <div className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400">
-                <User size={18} />
-              </div>
-              <Input
-                id="email"
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                className="pl-10 border-gray-200 focus:border-blue-400 focus:ring-blue-400 shadow-input"
-                placeholder="your@email.com"
-                disabled={isSubmitting}
-              />
-            </div>
-          </div>
-
-          <div className="space-y-2">
-            <div className="flex justify-between items-center">
-              <Label htmlFor="password" className="text-sm font-medium text-gray-700">
-                Password
-              </Label>
-              <Link 
-                to="/forgot-password" 
-                className="text-xs text-blue hover:text-blue-dark transition-colors"
-              >
-                Forgot Password?
-              </Link>
-            </div>
-            <div className="relative">
-              <div className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400">
-                <Lock size={18} />
-              </div>
-              <Input
-                id="password"
-                type={showPassword ? 'text' : 'password'}
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                className="pl-10 border-gray-200 focus:border-blue-400 focus:ring-blue-400 shadow-input"
-                placeholder="••••••••"
-                disabled={isSubmitting}
-              />
-              <button
-                type="button"
-                onClick={togglePasswordVisibility}
-                className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600"
-              >
-                {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
-              </button>
-            </div>
-          </div>
-
-          <div className="flex items-center space-x-2">
-            <Checkbox 
-              id="remember" 
-              checked={rememberMe}
-              onCheckedChange={(checked) => setRememberMe(checked === true)}
-              className="data-[state=checked]:bg-blue data-[state=checked]:border-blue"
+        <div className="mb-3">
+          <label htmlFor="email" className="form-label">
+            Email
+          </label>
+          <div className="input-group">
+            <span className="input-group-text">
+              <User size={18} />
+            </span>
+            <input
+              id="email"
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              className="form-control"
+              placeholder="your@email.com"
+              disabled={isSubmitting}
             />
-            <label
-              htmlFor="remember"
-              className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 text-gray-700"
-            >
-              Remember me
-            </label>
           </div>
-
-          <Button 
-            type="submit" 
-            className="w-full bg-blue hover:bg-blue-dark transition-colors rounded-full"
-            disabled={isSubmitting}
-          >
-            {isSubmitting ? "Signing in..." : "Sign In"}
-          </Button>
         </div>
+
+        <div className="mb-3">
+          <div className="d-flex justify-content-between align-items-center">
+            <label htmlFor="password" className="form-label mb-0">
+              Password
+            </label>
+            <Link 
+              to="/forgot-password" 
+              className="text-decoration-none small"
+            >
+              Forgot Password?
+            </Link>
+          </div>
+          <div className="input-group">
+            <span className="input-group-text">
+              <Lock size={18} />
+            </span>
+            <input
+              id="password"
+              type={showPassword ? 'text' : 'password'}
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              className="form-control"
+              placeholder="••••••••"
+              disabled={isSubmitting}
+            />
+            <button
+              type="button"
+              onClick={togglePasswordVisibility}
+              className="btn btn-outline-secondary"
+            >
+              {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+            </button>
+          </div>
+        </div>
+
+        <div className="mb-3 form-check">
+          <input 
+            type="checkbox" 
+            className="form-check-input" 
+            id="remember" 
+            checked={rememberMe}
+            onChange={(e) => setRememberMe(e.target.checked)}
+          />
+          <label
+            className="form-check-label"
+            htmlFor="remember"
+          >
+            Remember me
+          </label>
+        </div>
+
+        <button 
+          type="submit" 
+          className="btn btn-primary w-100 rounded-pill"
+          disabled={isSubmitting}
+        >
+          {isSubmitting ? "Signing in..." : "Sign In"}
+        </button>
       </form>
     </div>
   );

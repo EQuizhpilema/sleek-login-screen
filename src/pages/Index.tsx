@@ -1,7 +1,6 @@
 
 import React from 'react';
 import LoginForm from '@/components/LoginForm';
-import { Card } from '@/components/ui/card';
 
 const Index = () => {
   const handleLogin = (email: string, password: string) => {
@@ -10,11 +9,15 @@ const Index = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-100 to-gray-200 p-4">
-      <div className="w-full max-w-md">
-        <Card className="shadow-card overflow-hidden">
-          <LoginForm onLogin={handleLogin} companyName="Sun Logistics" />
-        </Card>
+    <div className="min-vh-100 d-flex align-items-center justify-content-center bg-light py-4">
+      <div className="container">
+        <div className="row justify-content-center">
+          <div className="col-12 col-md-6 col-lg-5 col-xl-4">
+            <div className="card shadow-card">
+              <LoginForm onLogin={handleLogin} companyName="Sun Logistics" />
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );

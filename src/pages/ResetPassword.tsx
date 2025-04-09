@@ -1,8 +1,5 @@
+
 import React, { useState } from 'react';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
-import { Alert, AlertDescription } from '@/components/ui/alert';
 import { useToast } from '@/components/ui/use-toast';
 import { Eye, EyeOff, Lock } from 'lucide-react';
 import { Link, useNavigate, useSearchParams } from 'react-router-dom';
@@ -81,19 +78,22 @@ const ResetPassword = () => {
   // If no token is provided in the URL, show an error
   if (!token) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-100 to-gray-200 p-4">
-        <div className="w-full max-w-md">
-          <div className="bg-white rounded-lg shadow-card p-8 text-center">
-            <h2 className="text-2xl font-bold text-center mb-4 text-gray-800">Invalid Reset Link</h2>
-            <p className="text-gray-600 mb-6">
-              This password reset link is invalid or has expired. Please request a new password reset link.
-            </p>
-            <Button 
-              asChild
-              className="w-full bg-blue hover:bg-blue-dark transition-colors rounded-full" // Updated to rounded-full
-            >
-              <Link to="/forgot-password">Request New Reset Link</Link>
-            </Button>
+      <div className="min-vh-100 d-flex align-items-center justify-content-center bg-light py-4">
+        <div className="container">
+          <div className="row justify-content-center">
+            <div className="col-12 col-md-6 col-lg-5 col-xl-4">
+              <div className="card shadow-card">
+                <div className="card-body text-center">
+                  <h2 className="card-title text-center mb-3">Invalid Reset Link</h2>
+                  <p className="text-muted mb-4">
+                    This password reset link is invalid or has expired. Please request a new password reset link.
+                  </p>
+                  <Link to="/forgot-password" className="btn btn-primary w-100 rounded-pill">
+                    Request New Reset Link
+                  </Link>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -101,100 +101,100 @@ const ResetPassword = () => {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-100 to-gray-200 p-4">
-      <div className="w-full max-w-md">
-        <div className="text-center mb-8">
-          <h1 className="text-4xl font-bold text-purple mb-2">Reset Password</h1>
-          <p className="text-gray-600">Create a new password for your account</p>
-        </div>
-        
-        <div className="w-full animate-fade-in">
-          <form onSubmit={handleSubmit} className="bg-white rounded-lg shadow-card p-8">
-            <h2 className="text-2xl font-bold text-center mb-6 text-gray-800">Create New Password</h2>
+    <div className="min-vh-100 d-flex align-items-center justify-content-center bg-light py-4">
+      <div className="container">
+        <div className="row justify-content-center">
+          <div className="col-12 col-md-6 col-lg-5 col-xl-4">
+            <div className="text-center mb-4">
+              <h1 className="fw-bold text-primary">Reset Password</h1>
+              <p className="text-muted">Create a new password for your account</p>
+            </div>
             
-            {error && (
-              <Alert variant="destructive" className="mb-4">
-                <AlertDescription>{error}</AlertDescription>
-              </Alert>
-            )}
+            <div className="card shadow-card">
+              <div className="card-body animate__animated animate__fadeIn">
+                <form onSubmit={handleSubmit}>
+                  <h2 className="card-title text-center mb-3">Create New Password</h2>
+                  
+                  {error && (
+                    <div className="alert alert-danger mb-4" role="alert">
+                      {error}
+                    </div>
+                  )}
 
-            <div className="space-y-4">
-              {/* New Password Field */}
-              <div className="space-y-2">
-                <Label htmlFor="password" className="text-sm font-medium text-gray-700">
-                  New Password
-                </Label>
-                <div className="relative">
-                  <div className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400">
-                    <Lock size={18} />
+                  <div className="mb-3">
+                    <label htmlFor="password" className="form-label">
+                      New Password
+                    </label>
+                    <div className="input-group">
+                      <span className="input-group-text">
+                        <Lock size={18} />
+                      </span>
+                      <input
+                        id="password"
+                        type={showPassword ? 'text' : 'password'}
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        className="form-control"
+                        placeholder="••••••••"
+                        disabled={isSubmitting}
+                      />
+                      <button
+                        type="button"
+                        onClick={togglePasswordVisibility}
+                        className="btn btn-outline-secondary"
+                      >
+                        {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+                      </button>
+                    </div>
                   </div>
-                  <Input
-                    id="password"
-                    type={showPassword ? 'text' : 'password'}
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    className="pl-10 border-gray-200 focus:border-purple-400 focus:ring-purple-400 shadow-input"
-                    placeholder="••••••••"
-                    disabled={isSubmitting}
-                  />
-                  <button
-                    type="button"
-                    onClick={togglePasswordVisibility}
-                    className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600"
-                  >
-                    {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
-                  </button>
-                </div>
-              </div>
 
-              {/* Confirm Password Field */}
-              <div className="space-y-2">
-                <Label htmlFor="confirmPassword" className="text-sm font-medium text-gray-700">
-                  Confirm Password
-                </Label>
-                <div className="relative">
-                  <div className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400">
-                    <Lock size={18} />
+                  <div className="mb-3">
+                    <label htmlFor="confirmPassword" className="form-label">
+                      Confirm Password
+                    </label>
+                    <div className="input-group">
+                      <span className="input-group-text">
+                        <Lock size={18} />
+                      </span>
+                      <input
+                        id="confirmPassword"
+                        type={showConfirmPassword ? 'text' : 'password'}
+                        value={confirmPassword}
+                        onChange={(e) => setConfirmPassword(e.target.value)}
+                        className="form-control"
+                        placeholder="••••••••"
+                        disabled={isSubmitting}
+                      />
+                      <button
+                        type="button"
+                        onClick={toggleConfirmPasswordVisibility}
+                        className="btn btn-outline-secondary"
+                      >
+                        {showConfirmPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+                      </button>
+                    </div>
                   </div>
-                  <Input
-                    id="confirmPassword"
-                    type={showConfirmPassword ? 'text' : 'password'}
-                    value={confirmPassword}
-                    onChange={(e) => setConfirmPassword(e.target.value)}
-                    className="pl-10 border-gray-200 focus:border-purple-400 focus:ring-purple-400 shadow-input"
-                    placeholder="••••••••"
+
+                  <button 
+                    type="submit" 
+                    className="btn btn-primary w-100 rounded-pill mb-3"
                     disabled={isSubmitting}
-                  />
-                  <button
-                    type="button"
-                    onClick={toggleConfirmPasswordVisibility}
-                    className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600"
                   >
-                    {showConfirmPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+                    {isSubmitting ? "Resetting..." : "Reset Password"}
                   </button>
-                </div>
-              </div>
 
-              {/* Reset Button */}
-              <Button 
-                type="submit" 
-                className="w-full bg-blue hover:bg-blue-dark transition-colors rounded-full" // Updated to rounded-full
-                disabled={isSubmitting}
-              >
-                {isSubmitting ? "Resetting..." : "Reset Password"}
-              </Button>
-
-              {/* Back to Login */}
-              <div className="text-center mt-4">
-                <p className="text-sm text-gray-600">
-                  Remember your password?{" "}
-                  <Link to="/" className="text-purple hover:text-purple-dark transition-colors font-medium">
-                    Back to login
-                  </Link>
-                </p>
+                  <div className="text-center">
+                    <p className="small text-muted">
+                      Remember your password?{" "}
+                      <Link to="/" className="text-decoration-none">
+                        Back to login
+                      </Link>
+                    </p>
+                  </div>
+                </form>
               </div>
             </div>
-          </form>
+          </div>
         </div>
       </div>
     </div>

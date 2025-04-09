@@ -1,13 +1,8 @@
 
 import React, { useState } from 'react';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
-import { Alert, AlertDescription } from '@/components/ui/alert';
 import { useToast } from '@/components/ui/use-toast';
 import { User } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import { Card } from '@/components/ui/card';
 
 const ForgotPassword = () => {
   const [email, setEmail] = useState('');
@@ -58,82 +53,81 @@ const ForgotPassword = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-100 to-gray-200 p-4">
-      <div className="w-full max-w-md">
-        <Card className="shadow-card overflow-hidden">
-          {emailSent ? (
-            <div className="p-8 text-center">
-              <div className="flex justify-center mb-6">
-                <div className="bg-green-100 p-3 rounded-full">
-                  <User className="w-8 h-8 text-green-500" />
-                </div>
-              </div>
-              <h2 className="text-2xl font-bold text-center mb-4 text-gray-800">Email Sent</h2>
-              <p className="text-gray-600 mb-6">
-                If an account exists with the email <strong>{email}</strong>, you'll receive a 
-                password reset link shortly. Please check your inbox and spam folder.
-              </p>
-              <Button 
-                asChild
-                className="w-full bg-blue hover:bg-blue-dark transition-colors rounded-full"
-              >
-                <Link to="/">Return to Login</Link>
-              </Button>
-            </div>
-          ) : (
-            <div className="w-full animate-fade-in">
-              <form onSubmit={handleSubmit} className="p-8">
-                <h2 className="text-2xl font-bold text-center mb-2 text-gray-800">Forgot Password</h2>
-                <p className="text-center mb-6 text-gray-600">Enter your email to receive a password reset link</p>
-                
-                {error && (
-                  <Alert variant="destructive" className="mb-4">
-                    <AlertDescription>{error}</AlertDescription>
-                  </Alert>
-                )}
-
-                <div className="space-y-4">
-                  <div className="space-y-2">
-                    <Label htmlFor="email" className="text-sm font-medium text-gray-700">
-                      Email
-                    </Label>
-                    <div className="relative">
-                      <div className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400">
-                        <User size={18} />
-                      </div>
-                      <Input
-                        id="email"
-                        type="email"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                        className="pl-10 border-gray-200 focus:border-blue-400 focus:ring-blue-400 shadow-input"
-                        placeholder="your@email.com"
-                        disabled={isSubmitting}
-                      />
+    <div className="min-vh-100 d-flex align-items-center justify-content-center bg-light py-4">
+      <div className="container">
+        <div className="row justify-content-center">
+          <div className="col-12 col-md-6 col-lg-5 col-xl-4">
+            <div className="card shadow-card">
+              {emailSent ? (
+                <div className="card-body text-center">
+                  <div className="d-flex justify-content-center mb-4">
+                    <div className="bg-success bg-opacity-10 p-3 rounded-circle">
+                      <User className="text-success" size={32} />
                     </div>
                   </div>
-
-                  <Button 
-                    type="submit" 
-                    className="w-full bg-blue hover:bg-blue-dark transition-colors rounded-full"
-                    disabled={isSubmitting}
-                  >
-                    {isSubmitting ? "Sending..." : "Send Reset Link"}
-                  </Button>
-
-                  <div className="text-center mt-4">
-                    <p className="text-sm text-gray-600">
-                      Remember your password?{" "}
-                      <Link to="/" className="text-blue hover:text-blue-dark transition-colors font-medium">
-                        Back to login
-                      </Link>
-                    </p>
-                  </div>
+                  <h2 className="card-title text-center mb-3">Email Sent</h2>
+                  <p className="text-muted mb-4">
+                    If an account exists with the email <strong>{email}</strong>, you'll receive a 
+                    password reset link shortly. Please check your inbox and spam folder.
+                  </p>
+                  <Link to="/" className="btn btn-primary w-100 rounded-pill">
+                    Return to Login
+                  </Link>
                 </div>
-              </form>
+              ) : (
+                <div className="card-body animate__animated animate__fadeIn">
+                  <form onSubmit={handleSubmit}>
+                    <h2 className="card-title text-center mb-2">Forgot Password</h2>
+                    <p className="text-center mb-4 text-muted">Enter your email to receive a password reset link</p>
+                    
+                    {error && (
+                      <div className="alert alert-danger mb-4" role="alert">
+                        {error}
+                      </div>
+                    )}
+
+                    <div className="mb-3">
+                      <label htmlFor="email" className="form-label">
+                        Email
+                      </label>
+                      <div className="input-group">
+                        <span className="input-group-text">
+                          <User size={18} />
+                        </span>
+                        <input
+                          id="email"
+                          type="email"
+                          value={email}
+                          onChange={(e) => setEmail(e.target.value)}
+                          className="form-control"
+                          placeholder="your@email.com"
+                          disabled={isSubmitting}
+                        />
+                      </div>
+                    </div>
+
+                    <button 
+                      type="submit" 
+                      className="btn btn-primary w-100 rounded-pill mb-3"
+                      disabled={isSubmitting}
+                    >
+                      {isSubmitting ? "Sending..." : "Send Reset Link"}
+                    </button>
+
+                    <div className="text-center">
+                      <p className="small text-muted">
+                        Remember your password?{" "}
+                        <Link to="/" className="text-decoration-none">
+                          Back to login
+                        </Link>
+                      </p>
+                    </div>
+                  </form>
+                </div>
+              )}
             </div>
-          )}
-        </Card>
+          </div>
+        </div>
       </div>
     </div>
   );
