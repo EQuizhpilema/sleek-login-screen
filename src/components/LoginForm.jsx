@@ -139,7 +139,7 @@ const LoginForm = ({ onLogin, companyName = "Sun Logistics" }) => {
 
         <button 
           type="submit" 
-          className="btn btn-primary btn-lg btn-block w-100 ripple-surface"
+          className="btn btn-primary btn-lg btn-block w-100 ripple-surface rounded-pill"
           disabled={isSubmitting}
         >
           {isSubmitting ? 
