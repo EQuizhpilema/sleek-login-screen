@@ -10,12 +10,12 @@ import { useToast } from '@/components/ui/use-toast';
 import { Link } from 'react-router-dom';
 
 interface LoginFormProps {
-  onLogin?: (email: string, password: string) => void;
+  onLogin?: (username: string, password: string) => void;
   companyName?: string;
 }
 
 const LoginForm: React.FC<LoginFormProps> = ({ onLogin, companyName = "Sun Logistics" }) => {
-  const [email, setEmail] = useState('');
+  const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [rememberMe, setRememberMe] = useState(false);
@@ -23,23 +23,13 @@ const LoginForm: React.FC<LoginFormProps> = ({ onLogin, companyName = "Sun Logis
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { toast } = useToast();
 
-  const validateEmail = (email: string) => {
-    const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return re.test(email);
-  };
-
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
     setError(null);
     
-    if (!email.trim() || !password.trim()) {
-      setError('Please enter both email and password');
-      return;
-    }
-    
-    if (!validateEmail(email)) {
-      setError('Please enter a valid email address');
+    if (!username.trim() || !password.trim()) {
+      setError('Please enter both username and password');
       return;
     }
     
@@ -53,17 +43,17 @@ const LoginForm: React.FC<LoginFormProps> = ({ onLogin, companyName = "Sun Logis
     try {
       await new Promise(resolve => setTimeout(resolve, 1000));
       
-      if (email === 'user@example.com' && password === 'password123') {
+      if (username === 'admin' && password === 'password123') {
         toast({
           title: "Login Successful",
           description: "Welcome back!",
         });
         
         if (onLogin) {
-          onLogin(email, password);
+          onLogin(username, password);
         }
       } else {
-        setError('Invalid email or password. Please try again.');
+        setError('Invalid username or password. Please try again.');
       }
     } catch (err) {
       setError('An error occurred. Please try again later.');
@@ -89,20 +79,20 @@ const LoginForm: React.FC<LoginFormProps> = ({ onLogin, companyName = "Sun Logis
         )}
 
         <div className="mb-3">
-          <label htmlFor="email" className="form-label">
-            Email
+          <label htmlFor="username" className="form-label">
+            Username
           </label>
           <div className="input-group">
             <span className="input-group-text">
               <User size={18} />
             </span>
             <input
-              id="email"
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              id="username"
+              type="text"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
               className="form-control"
-              placeholder="your@email.com"
+              placeholder="username"
               disabled={isSubmitting}
             />
           </div>

@@ -3,8 +3,8 @@ import React from 'react';
 import LoginForm from '@/components/LoginForm';
 
 const Index = () => {
-  const handleLogin = (email: string, password: string) => {
-    console.log('Login attempted with:', email, password);
+  const handleLogin = (username: string, password: string) => {
+    console.log('Login attempted with:', username, password);
     // In a real app, you would handle authentication here
   };
 
